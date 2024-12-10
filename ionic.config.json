@@ -1,0 +1,7 @@
+{
+  "name": "splash-tutorial",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
