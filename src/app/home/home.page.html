@@ -1,20 +1,72 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header >
+  <ion-toolbar color="tertiary">
     <ion-title>
-      Blank
+      MAscotas QR
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding ion-text-center" >
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <ion-segment [(ngModel)]="segment" node="ios" >
+    <ion-segment-button value="scan">
+      <ion-label>Mascota</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="propietario">
+      <ion-label>Propietario</ion-label>
+    </ion-segment-button>
+  </ion-segment> 
+
+
+  <div class="segment" *ngIf="segment === 'scan' ">
+    <div class="segment-content" >
+
+      <img src="assets/images/scan-qr.webp" alt="">
+      <h6 class="scan-label">Escanee El QR</h6>
+      <ion-row>
+        <ion-col size="6">
+          <ion-button (click)="starScan()" class="submit" expan="block">
+            Scan QR
+            <ion-icon slot="end" name="scan-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button class="submit" expan="block">
+            Selecionar
+            <ion-icon slot="end" name="image-outline"></ion-icon>
+          </ion-button>
+        </ion-col>
+
+      </ion-row>
+      <!-- scan resultado -->
+       <ion-item class='result' *ngIf="scanResult" line="none" >
+        <ion-label>
+          <p>Scan Resultado</p>
+          <div>{{scanResult}}</div>
+        </ion-label>
+       </ion-item>
+
+    </div>
   </div>
+  
+  <div class="segment" *ngIf="segment === 'propietario' ">
+    <div class="segment-content">
+
+      <div id="qrImage">
+        <div class="d-flex-center">
+          <div class="d-flex-center qr-wrapper">
+            <qr-code value="Hello world!" 
+         size="190" 
+         errorCorrectionLevel="M" />
+
+          </div>
+
+        </div>  
+
+      </div>
+
+    </div>
+
+  </div>
+  
 </ion-content>
