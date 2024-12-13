@@ -4,6 +4,7 @@ import { BarcodeScanningModalComponent } from './barcode-scanning-modal.componen
 import { BarcodeScanner, LensFacing } from '@capacitor-mlkit/barcode-scanning';
 import { Capacitor } from '@capacitor/core';
 import { PlacaService, PlacaDatos } from '../services/placa.service';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomePage {
   placaDatos: PlacaDatos | null = null;
   loading: any;
   noplaca: boolean = false;
-
+  selectedImage: string = '';
   segment = 'scan';
   scanResult = ''; // Esta variable contiene el resultado del escaneo
 
@@ -69,7 +70,7 @@ export class HomePage {
       component: BarcodeScanningModalComponent,
       cssClass: 'barcode-scannig-modal',
       showBackdrop: false,
-      componentProps: { 
+      componentProps: {
         formats: [],
         LensFacing: LensFacing.Back
       }
@@ -87,4 +88,7 @@ export class HomePage {
       this.consultarPlaca();
     }
   }
+
+  
+
 }
